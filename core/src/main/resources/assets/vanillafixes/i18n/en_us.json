@@ -1,0 +1,93 @@
+{
+	"vanillafixes" : {
+		"settings" : {
+			"name" : "VanillaFixes",
+			"enabled" : {
+				"name" : "Enabled"
+			},
+			"header" : {
+				"modules" : {
+					"name" : "Modules"
+				}
+			},
+			"translucentSkinFix" : {
+				"name" : "Translucent skin fix",
+				"description": "Semi-transparent pixels on players' skin texture are solid. With this enabled skins render properly with the correct alpha channel."
+			},
+			"focusMovementFix" : {
+				"name" : "Focus movement fix",
+				"description": "Brings modern keyboard handling from newer version. The bug chokes key if they are held while in GUI, so on exit you need to press them again. With this enabled it gets fixed."
+			},
+			"dupeSoundFix" : {
+				"name" : "Sound duplication fix",
+				"description" : "If a sound starts playing while GUI is opened, it plays again on exiting. With this enabled it gets fixed."
+			},
+			"betterF3Commands" : {
+				"name" : "Better F3 commands",
+				"description" : "Brings better F3 commands handling from newer version. When triggering F3 command (ex. F3+A), debug screen appears and A movement key also triggers. With this enabled it gets fixed."
+			},
+			"f3CommandsSubSettings" : {
+				"name": "Better F3 commands",
+				"description" : "Brings better F3 commands handling from newer version. When triggering F3 command (ex. F3+A), debug screen appears and A movement key also triggers. With this enabled it gets fixed.",
+				"debugF3CommandMessage" : {
+					"name" : "Display debug message in chat",
+					"description" : "Determines whether to print a message like \"§e§o[Debug]:§f§o Reloading all chunks§f\" on F3 command."
+				}
+			},
+			"displayInventoryEffets" : {
+				"name" : "Hide effects from inventory",
+				"description" : "Hides potion effects from inventory preventing it from being shifted. Useful in case one uses HUD display for potions, so no need to have them in inventory as well."
+			},
+			"infiniteTitleFix" : {
+				"name" : "Infinite title fix",
+				"description" : "If a title is shown while disconnecting, it might remain after joining another server or SP world. This fix ensures titles are cleared on disconnecting."
+			}
+		},
+		"debug" : {
+			"prefix" : "[Debug]:",
+			"reload_chunks" : {
+				"help" : "F3 + A = Reload chunks",
+				"message" : "Reloading all chunks"
+			},
+			"show_hitboxes" : {
+				"help" : "F3 + B = Show hitboxes",
+				"on" : "Hitboxes: shown",
+				"off" : "Hitboxes: hidden"
+			},
+			"clear_chat" : {
+				"help" : "F3 + D = Clear chat"
+			},
+			"cycle_renderdistance" : {
+				"help" : "F3 + F = Cycle render distance (Shift to invert)",
+				"message" : "Render Distance: %s"
+			},
+			"chunk_boundaries" : {
+				"help" : "F3 + G = Show chunk boundaries",
+				"on" : "Chunk borders: shown",
+				"off" : "Chunk borders: hidden"
+			},
+			"advanced_tooltips" : {
+				"help" : "F3 + H = Advanced tooltips",
+				"on" : "Advanced tooltips: shown",
+				"off" : "Advanced tooltips: hidden"
+			},
+			"creative_spectator" : {
+				"help" : "F3 + N = Cycle creative <-> spectator",
+				"error" : "Unable to switch gamemode, no permission"
+			},
+			"pause_focus" : {
+				"help" : "F3 + P = Pause on lost focus",
+				"on" : "Pause on lost focus: enabled",
+				"off" : "Pause on lost focus: disabled"
+			},
+			"help" : {
+				"help" : "F3 + Q = Show this list",
+				"message" : "Key bindings:"
+			},
+			"reload_resourcepacks" : {
+				"help" : "F3 + T = Reload resource packs",
+				"message" : "Reloaded resource packs"
+			}
+		}
+	}
+}
