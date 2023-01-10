@@ -1,5 +1,21 @@
 # VanillaFixes
 This Labymod 4 addon provides you with fixes to some of annoying 1.8 bugs:
+
+<table>
+<thead>
+  <tr>
+    <td>Addon</td>
+    <td>Settings</td>
+  </tr>
+  <tr>
+    <td valign="center"><img src="https://user-images.githubusercontent.com/19906474/211462649-df2da5b4-912a-4da6-9029-9f9a49e352fc.png" width="300"></td>
+    <td valign="center"><img src="https://user-images.githubusercontent.com/19906474/211462653-d1796433-f27a-4320-ac6f-f87f37f4a1f5.png" width="300"></td>
+  </tr>
+</thead>
+</table>
+
+---
+
 - **Translucent skin fix**
   - Makes skin's second layer render semi-transparent pixels correctly
   - <img src="https://user-images.githubusercontent.com/19906474/211441396-77eeea4f-42b4-4773-9d27-ba3c64bb33c4.png" width="600">
