@@ -1,4 +1,4 @@
-package net.labymod.addons.wector11211.vanillafixes.v1_8.mixins;
+package net.labymod.addons.wector11211.vanillafixes.v1_8.mixins.betterf3fix;
 
 import net.labymod.addons.wector11211.vanillafixes.VanillaFixesAddon;
 import net.labymod.addons.wector11211.vanillafixes.VanillaFixesAddonConfiguration;
@@ -45,8 +45,9 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+
 @Mixin(Minecraft.class)
-public abstract class F3CommandsFixMixin {
+public abstract class F3CommandsMixin {
 	private static VanillaFixesAddonConfiguration configuration() {
 		return LabyGuice.getInstance(VanillaFixesAddon.class).configuration();
 	}
@@ -213,7 +214,7 @@ public abstract class F3CommandsFixMixin {
 		{
 			if (this.ingameGUI != null)
 			{
-				this.ingameGUI.getChatGUI().clearChatMessages();
+				((IGuiNewChat)this.ingameGUI.getChatGUI()).onlyClearChat();
 			}
 
 			return true;
@@ -458,7 +459,8 @@ public abstract class F3CommandsFixMixin {
 	private RenderManager renderManager;
 
 
-
+	@Shadow
+	private static Minecraft theMinecraft;
 
 	public void displayChatMessage(String msg){
 		Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(msg));
