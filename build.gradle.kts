@@ -1,75 +1,73 @@
-buildscript {
-    repositories {
-        var bearerToken = System.getenv("LABYMOD_BEARER_TOKEN")
-
-        if (bearerToken == null && project.hasProperty("net.labymod.distributor.bearer-token")) {
-            bearerToken = project.property("net.labymod.distributor.bearer-token").toString()
-        }
-
-        maven("https://dist.labymod.net/api/v1/maven/release/") {
-            name = "LabyMod Distributor"
-
-            authentication {
-                create<HttpHeaderAuthentication>("header")
-            }
-
-            credentials(HttpHeaderCredentials::class) {
-                name = "Authorization"
-                value = "Bearer $bearerToken"
-            }
-        }
-
-
-        maven("https://repo.spongepowered.org/repository/maven-public") {
-            name = "SpongePowered Repository"
-        }
-
-        mavenLocal()
-    }
-
-    dependencies {
-        classpath("net.labymod.gradle", "addon", "0.2.56")
-    }
-}
-
 plugins {
     id("java-library")
+    id("net.labymod.gradle")
+    id("net.labymod.gradle.addon")
 }
 
-group = "net.labymod.addons.Wector11211"
+group = "dev.wector11211.labymod"
 version = "1.0.0"
-
-plugins.apply("net.labymod.gradle.addon")
 
 java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 
+labyMod {
+    defaultPackageName = "dev.wector11211.labymod.vanillafixes"
+    addonInfo {
+        namespace = "vanillafixes"
+        displayName = "Vanilla Fixes for 1.8"
+        author = "Wector11211"
+        description = "Brings fixes for some annoying 1.8 bugs"
+        minecraftVersion = "1.8.9"
+        version = System.getenv().getOrDefault("VERSION", "0.0.1")
+    }
+
+    minecraft {
+        registerVersions("1.8.9") { version, provider ->
+            configureRun(provider, version)
+        }
+
+        subprojects.forEach {
+            if (it.name != "game-runner") {
+                filter(it.name)
+            }
+        }
+    }
+
+    addonDev {
+        snapshotRelease()
+    }
+}
+
 subprojects {
     plugins.apply("java-library")
+    plugins.apply("net.labymod.gradle")
     plugins.apply("net.labymod.gradle.addon")
 
     repositories {
         maven("https://libraries.minecraft.net/")
         maven("https://repo.spongepowered.org/repository/maven-public/")
-        mavenLocal()
-    }
-
-    tasks.compileJava {
-        options.encoding = "UTF-8"
     }
 }
 
-addon {
-    addonInfo {
-        namespace("vanillafixes")
-        displayName("VanillaFixes")
-        author("Wector11211")
-        description("Brings fixes for some annoying 1.8 bugs:\n-Skin second layer transparency\n-Focus movement fix\n-Duplication sound fix\n-Better F3 commands\n-Infinity title fix\n-Hiding potion effects from inventory")
-        iconUrl("https://i.imgur.com/daej7Lb.png", project(":core"))
-        version(System.getenv().getOrDefault("VERSION", "0.0.0"))
+fun configureRun(provider: net.labymod.gradle.core.minecraft.provider.VersionProvider, gameVersion: String) {
+    provider.runConfiguration {
+        mainClass = "net.minecraft.launchwrapper.Launch"
+        jvmArgs("-Dnet.labymod.running-version=${gameVersion}")
+        jvmArgs("-Dmixin.debug=true")
+        jvmArgs("-Dnet.labymod.debugging.all=true")
+        jvmArgs("-Dmixin.env.disableRefMap=true")
 
-        //if you want to add dependencies, go to the build.gradle.kts in the core or api module
-        //add take a look in the dependencies block
+        args("--tweakClass", "net.labymod.core.loader.vanilla.launchwrapper.LabyModLaunchWrapperTweaker")
+        args("--labymod-dev-environment", "true")
+        args("--addon-dev-environment", "true")
     }
 
-    snapshotRelease()
+    provider.javaVersion = when (gameVersion) {
+        else -> {
+            JavaVersion.VERSION_17
+        }
+    }
+
+    provider.mixin {
+        minVersion = "0.6.6" // addon is 1.8.9 only
+    }
 }

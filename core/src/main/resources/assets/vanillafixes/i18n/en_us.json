@@ -1,7 +1,7 @@
 {
 	"vanillafixes" : {
 		"settings" : {
-			"name" : "VanillaFixes",
+			"name" : "Vanilla Fixes for 1.8",
 			"enabled" : {
 				"name" : "Enabled"
 			},
@@ -9,10 +9,6 @@
 				"modules" : {
 					"name" : "Modules"
 				}
-			},
-			"translucentSkinFix" : {
-				"name" : "Translucent skin fix",
-				"description": "Semi-transparent pixels on players' skin texture are solid. With this enabled skins render properly with the correct alpha channel."
 			},
 			"focusMovementFix" : {
 				"name" : "Focus movement fix",
