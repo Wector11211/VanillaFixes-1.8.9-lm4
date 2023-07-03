@@ -61,11 +61,7 @@ fun configureRun(provider: net.labymod.gradle.core.minecraft.provider.VersionPro
         args("--addon-dev-environment", "true")
     }
 
-    provider.javaVersion = when (gameVersion) {
-        else -> {
-            JavaVersion.VERSION_17
-        }
-    }
+    provider.javaVersion = JavaVersion.VERSION_17
 
     provider.mixin {
         minVersion = "0.6.6" // addon is 1.8.9 only

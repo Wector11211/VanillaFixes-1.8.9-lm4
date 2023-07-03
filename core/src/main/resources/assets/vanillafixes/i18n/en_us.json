@@ -1,7 +1,7 @@
 {
 	"vanillafixes" : {
 		"settings" : {
-			"name" : "Vanilla Fixes for 1.8",
+			"name" : "VanillaFixes",
 			"enabled" : {
 				"name" : "Enabled"
 			},
@@ -9,6 +9,10 @@
 				"modules" : {
 					"name" : "Modules"
 				}
+			},
+			"translucentSkinFix" : {
+				"name" : "Translucent skin fix",
+				"description": "Semi-transparent pixels on players' skin texture are solid. With this enabled skins render properly with the correct alpha channel."
 			},
 			"focusMovementFix" : {
 				"name" : "Focus movement fix",
@@ -25,6 +29,10 @@
 			"f3CommandsSubSettings" : {
 				"name": "Better F3 commands",
 				"description" : "Brings better F3 commands handling from newer version. When triggering F3 command (ex. F3+A), debug screen appears and A movement key also triggers. With this enabled it gets fixed.",
+				"clearOnlyChat" : {
+					"name" : "Clear only chat (F3+D)",
+					"description" : "Prevents chat history to be deleted on F3+D, with this enabled only chat itself will be cleared, but not the input history (pressing arrow keys).\n§e⚠ Doesn't work with advanced chat!"
+				},
 				"debugF3CommandMessage" : {
 					"name" : "Display debug message in chat",
 					"description" : "Determines whether to print a message like \"§e§o[Debug]:§f§o Reloading all chunks§f\" on F3 command."

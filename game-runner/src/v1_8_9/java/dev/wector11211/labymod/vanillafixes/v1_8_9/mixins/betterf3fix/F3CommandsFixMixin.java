@@ -1,8 +1,16 @@
-package dev.wector11211.labymod.vanillafixes.v1_8_9.mixins;
+package dev.wector11211.labymod.vanillafixes.v1_8_9.mixins.betterf3fix;
 
 import dev.wector11211.labymod.vanillafixes.VanillaFixesAddon;
 import dev.wector11211.labymod.vanillafixes.VanillaFixesAddonConfiguration;
 import net.labymod.api.Laby;
+import net.labymod.api.configuration.labymod.chat.AdvancedChatMessage;
+import net.labymod.api.configuration.labymod.main.laby.ingame.AdvancedChatConfig;
+import net.labymod.api.event.Phase;
+import net.labymod.api.event.client.chat.ChatClearEvent;
+import net.labymod.api.event.client.lifecycle.GameTickEvent;
+import net.labymod.core.client.chat.advanced.AdvancedChatController;
+import net.labymod.v1_8_9.client.VersionedMinecraft;
+import net.labymod.v1_8_9.client.gui.screen.LabyScreenRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.client.audio.SoundHandler;
@@ -25,7 +33,6 @@ import net.minecraft.crash.CrashReport;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer.EnumChatVisibility;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.client.C16PacketClientStatus;
 import net.minecraft.network.play.client.C16PacketClientStatus.EnumState;

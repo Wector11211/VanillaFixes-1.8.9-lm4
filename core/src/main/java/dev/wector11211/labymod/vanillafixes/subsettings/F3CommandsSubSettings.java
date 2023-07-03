@@ -11,6 +11,9 @@ public class F3CommandsSubSettings extends Config {
 	@SwitchSetting
 	private ConfigProperty<Boolean> enabled = new ConfigProperty<>(true);
 
+    @SwitchSetting
+    private ConfigProperty<Boolean> clearOnlyChat = new ConfigProperty<>(true);
+
 	@SwitchSetting
 	private ConfigProperty<Boolean> debugF3CommandMessage = new ConfigProperty<>(true);
 
@@ -21,4 +24,8 @@ public class F3CommandsSubSettings extends Config {
 	public ConfigProperty<Boolean> debugF3CommandMessage() {
 		return this.debugF3CommandMessage;
 	}
+
+    public ConfigProperty<Boolean> clearOnlyChat() {
+        return clearOnlyChat;
+    }
 }

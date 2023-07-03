@@ -35,7 +35,7 @@ public abstract class DuplicateSoundFixMixin {
 	private final List<String> pausedSounds = new ArrayList<>();
 
 	@SuppressWarnings("InvalidInjectorMethodSignature")
-    // I know it highlights as an error for some reason, but it works completely perfect
+    // Intellij says as if it cannot resolve the target, but it works just perfectly
 	@Redirect(
 		method = "pauseAllSounds",
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/client/audio/SoundManager$SoundSystemStarterThread;pause(Ljava/lang/String;)V")
