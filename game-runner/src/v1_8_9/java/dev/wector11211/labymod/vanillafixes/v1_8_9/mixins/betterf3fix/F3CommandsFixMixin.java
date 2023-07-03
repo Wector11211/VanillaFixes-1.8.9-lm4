@@ -3,12 +3,8 @@ package dev.wector11211.labymod.vanillafixes.v1_8_9.mixins.betterf3fix;
 import dev.wector11211.labymod.vanillafixes.VanillaFixesAddon;
 import dev.wector11211.labymod.vanillafixes.VanillaFixesAddonConfiguration;
 import net.labymod.api.Laby;
-import net.labymod.api.configuration.labymod.chat.AdvancedChatMessage;
-import net.labymod.api.configuration.labymod.main.laby.ingame.AdvancedChatConfig;
 import net.labymod.api.event.Phase;
-import net.labymod.api.event.client.chat.ChatClearEvent;
 import net.labymod.api.event.client.lifecycle.GameTickEvent;
-import net.labymod.core.client.chat.advanced.AdvancedChatController;
 import net.labymod.v1_8_9.client.VersionedMinecraft;
 import net.labymod.v1_8_9.client.gui.screen.LabyScreenRenderer;
 import net.minecraft.client.Minecraft;
@@ -92,9 +88,19 @@ public abstract class F3CommandsFixMixin {
 		}
 	}
 
+    // re-adding labymod mixin
+    private boolean labyMod$fireKeyInputEvent() {
+        if (!Keyboard.next()) {
+            return false;
+        } else {
+            LabyScreenRenderer screenRenderer = this.currentScreen instanceof LabyScreenRenderer ? (LabyScreenRenderer)this.currentScreen : null;
+            return ((VersionedMinecraft)this).dispatchKeyboardInput(screenRenderer) ? this.labyMod$fireKeyInputEvent() : true;
+        }
+    }
+
 	private void runTickKeyboard()
 	{
-		while (Keyboard.next())
+		while (labyMod$fireKeyInputEvent()/*Keyboard.next()*/)
 		{
 			int i = Keyboard.getEventKey() == 0 ? Keyboard.getEventCharacter() + 256 : Keyboard.getEventKey();
 
@@ -542,6 +548,10 @@ public abstract class F3CommandsFixMixin {
 
 		this.mcProfiler.endSection();
 		this.systemTime = getSystemTime();
+
+        // re-adding Labymod's mixin
+        Laby.fireEvent(new GameTickEvent(Phase.POST));
+        // =
 
 		// returning
 		ci.cancel();

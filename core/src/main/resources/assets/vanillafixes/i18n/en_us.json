@@ -31,7 +31,7 @@
 				"description" : "Brings better F3 commands handling from newer version. When triggering F3 command (ex. F3+A), debug screen appears and A movement key also triggers. With this enabled it gets fixed.",
 				"clearOnlyChat" : {
 					"name" : "Clear only chat (F3+D)",
-					"description" : "Prevents chat history to be deleted on F3+D, with this enabled only chat itself will be cleared, but not the input history (pressing arrow keys).\n§e⚠ Doesn't work with advanced chat!"
+					"description" : "Prevents chat history to be deleted on F3+D, with this enabled only chat itself will be cleared, but not the input history (pressing arrow keys)."
 				},
 				"debugF3CommandMessage" : {
 					"name" : "Display debug message in chat",

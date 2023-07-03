@@ -23,6 +23,7 @@ This Labymod 4 addon provides you with fixes to some of annoying 1.8 bugs:
   - In 1.8 there is a bug which chokes keyboard input, say if you are in inventory and hold movement keys (WASD) after closing it you have to press those keys again to make them register. Same happens if you're holding keys and you get teleported (switched worlds) on server. This module bings the fix from newer versions so that no longer happens.
 - **Better F3 commands**
   - Registers F3 combinations (ex. `F3+A`) before handling `F3` and keys separately. As the result, you no longer end up with dubug screen opened as well as chat (in case of `F3+T`) or moving (`F3+A`, `F3+D`)
+  - Added ability to keep input history after clearing chat with `F3+D` and only clear the chat itself.
 - **Sound duplication fix**
   - If a sound plays while you are opening a GUI (inventory), it gets played once again after closing the GUI. This module fixs the issue.
 - **Infinite title fix**
