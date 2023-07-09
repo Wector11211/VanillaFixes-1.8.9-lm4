@@ -1,4 +1,4 @@
-rootProject.name = "VanillaFixes"
+rootProject.name = "vanillafixes"
 
 pluginManagement {
     val labyGradlePluginVersion = "0.3.26"

@@ -18,6 +18,7 @@ labyMod {
         description = "Brings fixes for some annoying 1.8 bugs"
         minecraftVersion = "1.8.9"
         version = System.getenv().getOrDefault("VERSION", "0.0.1")
+        iconUrl = "https://i.imgur.com/daej7Lb.png"
     }
 
     minecraft {
