@@ -5,7 +5,6 @@ plugins {
 }
 
 group = "dev.wector11211.labymod"
-version = "1.0.0"
 
 java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 
@@ -17,7 +16,7 @@ labyMod {
         author = "Wector11211"
         description = "Brings fixes for some annoying 1.8 bugs"
         minecraftVersion = "1.8.9"
-        version = System.getenv().getOrDefault("VERSION", "0.0.1")
+        version = System.getenv().getOrDefault("VERSION", "1.0.0")
         iconUrl = "https://i.imgur.com/daej7Lb.png"
     }
 

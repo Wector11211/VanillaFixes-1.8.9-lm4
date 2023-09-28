@@ -1,7 +1,7 @@
 rootProject.name = "vanillafixes"
 
 pluginManagement {
-    val labyGradlePluginVersion = "0.3.26"
+    val labyGradlePluginVersion = "0.3.29"
     plugins {
         id("net.labymod.gradle") version (labyGradlePluginVersion)
     }
