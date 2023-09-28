@@ -1,10 +1,5 @@
 package dev.wector11211.labymod.vanillafixes.v1_8_9.mixins;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import dev.wector11211.labymod.vanillafixes.VanillaFixesAddon;
 import dev.wector11211.labymod.vanillafixes.VanillaFixesAddonConfiguration;
 import net.minecraft.client.audio.ISound;
@@ -13,11 +8,12 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Coerce;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import paulscode.sound.SoundSystem;
+import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+
+import java.util.*;
 
 @Mixin(SoundManager.class)
 public abstract class DuplicateSoundFixMixin {
@@ -34,20 +30,23 @@ public abstract class DuplicateSoundFixMixin {
 
 	private final List<String> pausedSounds = new ArrayList<>();
 
-	@SuppressWarnings("InvalidInjectorMethodSignature")
-    // Intellij says as if it cannot resolve the target, but it works just perfectly
-	@Redirect(
-		method = "pauseAllSounds",
-		at = @At(value = "INVOKE", target = "Lnet/minecraft/client/audio/SoundManager$SoundSystemStarterThread;pause(Ljava/lang/String;)V")
+	@Inject(
+			method = "pauseAllSounds",
+			at = @At(
+					value = "INVOKE",
+					target = "Lorg/apache/logging/log4j/Logger;debug(Lorg/apache/logging/log4j/Marker;Ljava/lang/String;[Ljava/lang/Object;)V",
+					shift = At.Shift.AFTER
+			),
+			locals = LocalCapture.CAPTURE_FAILEXCEPTION,
+			cancellable = true
 	)
-	private void pauseSound(@Coerce SoundSystem soundSystem, String sound) {
-		if(configuration().enabled().get() && configuration().dupeSoundFix().get()) {
-			if (isSoundPlaying(playingSounds.get(sound))) {
-				soundSystem.pause(sound);
-				pausedSounds.add(sound);
+	private void patcher$pauseSound(CallbackInfo ci, Iterator playingSounds, String sound) {
+		if (configuration().enabled().get() && configuration().dupeSoundFix().get()) {
+			if (!isSoundPlaying(this.playingSounds.get(sound))) {
+				ci.cancel();
+				return;
 			}
-		} else {
-			soundSystem.pause(sound);
+			pausedSounds.add(sound);
 		}
 	}
 
