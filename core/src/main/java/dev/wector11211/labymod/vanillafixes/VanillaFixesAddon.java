@@ -1,6 +1,5 @@
 package dev.wector11211.labymod.vanillafixes;
 
-import dev.wector11211.labymod.vanillafixes.listeners.ServerDisconnectListener;
 import net.labymod.api.addon.LabyAddon;
 import net.labymod.api.models.addon.annotation.AddonMain;
 
@@ -20,8 +19,6 @@ public class VanillaFixesAddon extends LabyAddon<VanillaFixesAddonConfiguration>
 	@Override
 	protected void enable() {
 		registerSettingCategory();
-
-        registerListener(new ServerDisconnectListener(configuration()));
 
         logger().info("[VanillaFixes] Addon enabled");
 	}

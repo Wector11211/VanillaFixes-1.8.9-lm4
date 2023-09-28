@@ -41,10 +41,6 @@
 			"displayInventoryEffets" : {
 				"name" : "Hide effects from inventory",
 				"description" : "Hides potion effects from inventory preventing it from being shifted. Useful in case one uses HUD display for potions, so no need to have them in inventory as well."
-			},
-			"infiniteTitleFix" : {
-				"name" : "Infinite title fix",
-				"description" : "If a title is shown while disconnecting, it might remain after joining another server or SP world. This fix ensures titles are cleared on disconnecting."
 			}
 		},
 		"debug" : {

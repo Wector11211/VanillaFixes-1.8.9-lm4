@@ -21,8 +21,6 @@ public class VanillaFixesAddonConfiguration extends AddonConfig {
 	private final ConfigProperty<Boolean> dupeSoundFix = new ConfigProperty<>(true);
 	private final F3CommandsSubSettings f3CommandsSubSettings = new F3CommandsSubSettings();
 	@SwitchSetting
-	private final ConfigProperty<Boolean> infiniteTitleFix = new ConfigProperty<>(true);
-	@SwitchSetting
 	private final ConfigProperty<Boolean> displayInventoryEffets = new ConfigProperty<>(true);
 
 	@Override
@@ -44,10 +42,6 @@ public class VanillaFixesAddonConfiguration extends AddonConfig {
 
 	public F3CommandsSubSettings f3CommandsSubSettings() {
 		return this.f3CommandsSubSettings;
-	}
-
-	public ConfigProperty<Boolean> infiniteTitleFix() {
-		return infiniteTitleFix;
 	}
 
 	public ConfigProperty<Boolean> displayInventoryEffets() {
